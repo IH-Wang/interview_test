@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>農村地方美食小吃特色料理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./assets/css/base.css" rel="stylesheet" type="text/css" />
+    <link
+      href="./assets/css/mobile.css"
+      rel="stylesheet"
+      type="text/css"
+      media="only screen and (max-width : 415px)"
+    />
+    <link href="./assets/css/desktop.css" rel="stylesheet" type="text/css" />
+    <script>
+      // 初始化全域變數
+      const cityTownList = [];
+      let filterData;
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header><h1>農村地方美食小吃特色料理</h1></header>
+      <div class="main">
+        <div class="filter">
+          <select id="city" onchange="changeCity()">
+            <option value="">請選擇行政區域</option>
+          </select>
+          <select id="town" disabled="true" onchange="changeTown()">
+            <option value="">請選擇鄉鎮區</option>
+          </select>
+        </div>
+        <div class="content" id="cards"></div>
+        <button class="load-more" onclick="loadMoreStore()">加載更多</button>
+      </div>
+      <footer>
+        <p>政府資料開放平台</p>
+        <a href="https://data.gov.tw/dataset/6037" target="_blank">
+          https://data.gov.tw/dataset/6037
+        </a>
+      </footer>
+    </div>
+    <div id="loading" class="loading">
+      <div class="loader"></div>
+      <p class="loading-text">資料下載中...請稍後！</p>
+    </div>
+  </body>
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/main.js"></script>
+</html>

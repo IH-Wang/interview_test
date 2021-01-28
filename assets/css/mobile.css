@@ -1,0 +1,39 @@
+@media only screen and (max-width: 375px) {
+  h1 {
+    font-size: 1.8em;
+  }
+}
+@media only screen and (max-width: 321px) {
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+.main {
+  margin: 0 1em;
+}
+.filter {
+  gap: 1em;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.load-more {
+  width: 100%;
+}
+
+.card-item:active .card-image {
+  transform: scale(1.05, 1.05);
+  filter: contrast(100%);
+}
+.card-item:active .card-intro {
+  display: -webkit-box;
+}
+.card-item:active .card-intro-border {
+  display: block;
+}
