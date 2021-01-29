@@ -1,9 +1,9 @@
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait)  {
+@media only screen and (max-device-width: 375px) {
   h1 {
     font-size: 1.8em;
   }
 }
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation : portrait) {
+@media only screen and (max-device-width: 320px) {
   h1 {
     font-size: 1.5em;
   }
@@ -13,18 +13,21 @@
   margin: 0 1em;
 }
 .filter {
-  gap: 1em;
-  flex-direction: column;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.filter > select {
+  width: 100%;
   margin-bottom: 1em;
 }
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 
-.load-more {
-  width: 100%;
+.card-item {
+  margin-bottom: 1em;
 }
 
 .card-item:active .card-image {
@@ -36,4 +39,12 @@
 }
 .card-item:active .card-intro-border {
   display: block;
+}
+
+.load-more {
+  width: 100%;
+  border-radius: 0;
+  margin: 0;
+  margin-bottom: 1em;
+  border: 1px solid gray;
 }
