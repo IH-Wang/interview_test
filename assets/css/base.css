@@ -99,7 +99,7 @@ select {
 }
 
 .load-more {
-  line-height: 4em;
+  height: 4em;
   margin: 1em 0;
   cursor: pointer;
 }
