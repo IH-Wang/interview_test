@@ -4,7 +4,6 @@ window.onload = () => {
   }
   initSelectOption();
   setCardList(travelFoodData);
-  checkImageLoaded();
 };
 // 檢查圖片是否全載完, 載完就將 loading 關掉
 const checkImageLoaded = () => {
@@ -14,6 +13,7 @@ const checkImageLoaded = () => {
     imageLoadState.push(element.complete);
   });
   const isAllImageLoaded = imageLoadState.every((state) => !!state);
+  // 沒載完 delay 0.1 秒再檢查
   if (!isAllImageLoaded) {
     setTimeout(() => {
       checkImageLoaded();
@@ -40,15 +40,13 @@ const initSelectOption = () => {
       }));
     }
   }, []);
-  cityTown.forEach((item) => {
-    cityTownList.push(item);
-  });
   const citySelect = document.getElementById("city");
-  cityTownList.forEach((city) => {
+  cityTown.forEach((item) => {
     citySelect.options[citySelect.options.length] = new Option(
-      city.name,
-      city.name
+      item.name,
+      item.name
     );
+    cityTownList.push(item);
   });
 };
 
@@ -99,10 +97,17 @@ const setCardList = (data) => {
 
 // 加載更多或者更新篩選資料
 const appendCardList = (isAdd, count) => {
+  // 圖片載入前, 先顯示 loading 遮罩
+  const loadingEl = document.getElementById("loading");
+  loadingEl.classList.remove("hidden");
+
   const contentEl = document.getElementById("cards");
+  // 如果是下拉篩選則是先清除 content innerHtml
   if (isAdd) {
     contentEl.innerHTML = ``;
   }
+
+  // 將資料每 9 筆做 append
   filterData.slice(count, 9 + count).forEach((item) => {
     const element = document.createElement("div");
     element.setAttribute("class", "card-item");
@@ -117,17 +122,17 @@ const appendCardList = (isAdd, count) => {
     </div>`;
     contentEl.appendChild(element);
   });
+  // 檢查圖片載完沒
+  checkImageLoaded();
 };
 
 // 加載更多商店
 const loadMoreStore = () => {
   const contentEl = document.getElementById("cards");
   const contentChildCount = contentEl.childElementCount;
+  // 檢查 content 底下子元素總數是否跟資料長度一樣, 不一樣才加載
   if (contentChildCount !== filterData.length) {
     appendCardList(false, contentChildCount);
-    const loadingEl = document.getElementById("loading");
-    loadingEl.classList.remove("hidden");
-    checkImageLoaded();
   } else {
     window.alert("已是全部資料");
   }
